@@ -13,7 +13,7 @@ import { SellerModule } from './seller/seller.module';
       host: process.env.DB_HOST || 'localhost',
       port: Number(process.env.DB_PORT) || 5432,
       username: process.env.DB_USER || 'postgres',
-      password: process.env.DB_PASS || 'postgres',
+      password: process.env.DB_PASS || 'poiuy',
       database: process.env.DB_NAME || 'online_marketplace',
       autoLoadEntities: true,
       synchronize: true, // dev only — generates tables automatically via TypeORM
