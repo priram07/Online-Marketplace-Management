@@ -13,7 +13,6 @@ import {
 import { CustomerService } from './customer.service';
 import { UpdateCustomerDto } from './dto/update-customer.dto';
 import { PatchCustomerDto } from './dto/patch-customer.dto';
-import { CreateProfileDto } from './dto/create-profile.dto';
 import { ParsePositiveIntPipe } from './pipes/parse-positive-int.pipe';
 import { JwtAuthGuard } from './auth/guards/jwt-auth.guard';
 
@@ -62,18 +61,5 @@ export class CustomerController {
     return this.customerService.remove(id);
   }
 
-  // ---- Relationship 1 routes: One-to-One Customer <-> CustomerProfile ----
-
-  // 7. POST /customers/:id/profile
-  @UseGuards(JwtAuthGuard)
-  @Post(':id/profile')
-  createProfile(@Param('id', ParsePositiveIntPipe) id: number, @Body() dto: CreateProfileDto) {
-    return this.customerService.createProfile(id, dto);
-  }
-
-  // 8. GET /customers/:id/profile
-  @Get(':id/profile')
-  getProfile(@Param('id', ParsePositiveIntPipe) id: number) {
-    return this.customerService.getProfile(id);
-  }
+  
 }

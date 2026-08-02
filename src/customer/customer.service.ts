@@ -5,7 +5,6 @@ import { Customer } from './entities/customer.entity';
 import { CustomerProfile } from './entities/customer-profile.entity';
 import { UpdateCustomerDto } from './dto/update-customer.dto';
 import { PatchCustomerDto } from './dto/patch-customer.dto';
-import { CreateProfileDto } from './dto/create-profile.dto';
 
 @Injectable()
 export class CustomerService {
@@ -56,28 +55,6 @@ export class CustomerService {
     return { message: `Customer #${id} deleted successfully` };
   }
 
-  // ---------- Relationship 1: One-to-One (Customer <-> CustomerProfile) ----------
-  async createProfile(customerId: number, dto: CreateProfileDto) {
-    const customer = await this.customerRepo.findOne({
-      where: { id: customerId },
-      relations: { profile: true },
-    });
-    if (!customer) throw new NotFoundException(`Customer #${customerId} not found`);
-    if (customer.profile) {
-      throw new ConflictException('Profile already exists for this customer');
-    }
-    const profile = this.profileRepo.create({ ...dto, customer });
-    return this.profileRepo.save(profile);
-  }
+  
 
-  async getProfile(customerId: number) {
-    const customer = await this.customerRepo.findOne({
-      where: { id: customerId },
-      relations: { profile: true },
-    });
-    if (!customer || !customer.profile) {
-      throw new NotFoundException(`Profile not found for customer #${customerId}`);
-    }
-    return customer.profile;
-  }
 }
