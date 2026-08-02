@@ -2,7 +2,6 @@ import { Injectable, NotFoundException, ConflictException } from '@nestjs/common
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import { Customer } from './entities/customer.entity';
-import { CustomerProfile } from './entities/customer-profile.entity';
 import { UpdateCustomerDto } from './dto/update-customer.dto';
 import { PatchCustomerDto } from './dto/patch-customer.dto';
 
@@ -11,8 +10,7 @@ export class CustomerService {
   constructor(
     @InjectRepository(Customer)
     private readonly customerRepo: Repository<Customer>,
-    @InjectRepository(CustomerProfile)
-    private readonly profileRepo: Repository<CustomerProfile>,
+    
   ) {}
 
   // ---------- CRUD ----------

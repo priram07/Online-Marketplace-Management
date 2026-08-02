@@ -7,7 +7,6 @@ import {
   ManyToMany,
   CreateDateColumn,
 } from 'typeorm';
-import { CustomerProfile } from './customer-profile.entity';
 import { Order } from './order.entity';
 import { Coupon } from './coupon.entity';
 
@@ -34,11 +33,7 @@ export class Customer {
   @CreateDateColumn()
   createdAt: Date;
 
-  // ---- Relationship 1: One-to-One ----
-  @OneToOne(() => CustomerProfile, (profile) => profile.customer, {
-    cascade: true,
-  })
-  profile: CustomerProfile;
+ 
 
   // ---- Relationship 2: One-to-Many ----
   @OneToMany(() => Order, (order) => order.customer)

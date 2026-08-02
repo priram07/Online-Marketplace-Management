@@ -9,7 +9,7 @@ import { Repository } from 'typeorm';
 import { JwtService } from '@nestjs/jwt';
 import * as bcrypt from 'bcrypt';
 import { Customer } from '../entities/customer.entity';
-import { CustomerProfile } from '../entities/customer-profile.entity';
+
 import { RegisterCustomerDto } from './dto/register-customer.dto';
 import { LoginDto } from './dto/login.dto';
 import { MailService } from '../mail/mail.service';
