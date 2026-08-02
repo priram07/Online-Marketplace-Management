@@ -10,7 +10,7 @@ import { MailModule } from '../mail/mail.module';
 
 @Module({
   imports: [
-    TypeOrmModule.forFeature([Customer, CustomerProfile]),
+    TypeOrmModule.forFeature([Customer]),
     PassportModule,
     JwtModule.register({
       secret: process.env.JWT_SECRET || 'customer_super_secret',

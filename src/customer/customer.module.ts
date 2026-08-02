@@ -14,7 +14,7 @@ import { MailModule } from './mail/mail.module';
 
 @Module({
   imports: [
-    TypeOrmModule.forFeature([Customer, CustomerProfile, Order, Coupon]),
+    TypeOrmModule.forFeature([Customer, Order, Coupon]),
     CustomerAuthModule, // dedicated auth sub-module (register/login/JWT strategy/guard)
     MailModule,
   ],

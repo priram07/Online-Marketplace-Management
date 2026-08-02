@@ -15,13 +15,13 @@ export class CustomerService {
 
   // ---------- CRUD ----------
   findAll() {
-    return this.customerRepo.find({ relations: { profile: true } });
+    return this.customerRepo.find();
   }
 
   async findOne(id: number) {
     const customer = await this.customerRepo.findOne({
       where: { id },
-      relations: { profile: true, orders: true, coupons: true },
+      relations: {  orders: true, coupons: true },
     });
     if (!customer) throw new NotFoundException(`Customer #${id} not found`);
     const { password, ...safe } = customer;

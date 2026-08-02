@@ -19,8 +19,6 @@ export class AuthService {
   constructor(
     @InjectRepository(Customer)
     private readonly customerRepo: Repository<Customer>,
-    @InjectRepository(CustomerProfile)
-    private readonly profileRepo: Repository<CustomerProfile>,
     private readonly jwtService: JwtService,
     private readonly mailService: MailService,
   ) {}
@@ -40,14 +38,7 @@ export class AuthService {
     });
     const saved = await this.customerRepo.save(customer);
 
-    if (dto.phone || dto.address) {
-      const profile = this.profileRepo.create({
-        phone: dto.phone,
-        address: dto.address,
-        customer: saved,
-      });
-      await this.profileRepo.save(profile);
-    }
+   
 
     await this.mailService.sendWelcomeEmail(saved.email, saved.fullName);
 
